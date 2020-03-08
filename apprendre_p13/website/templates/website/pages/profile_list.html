@@ -1,0 +1,56 @@
+{% extends "website/layouts/base.html" %}
+{% load crispy_forms_tags %}
+{% block content %}
+
+
+<section id="profile-list-head">
+    <div class="container">
+        <div class="row prof-liste">
+            <div class="col-lg-12 text-center">
+                <h1>Liste des projets de {{ user.username }}</h1>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section id="profile-list-content">
+        {% if queryset %}
+            {% for subset in queryset %}
+                <div class="container">
+                    {% for profiles in subset %}
+                        <div class="row up-title">
+                            <div class="col-lg-12 col-md-4 text-center">
+                                <a href="{% url 'profile-sheet' id=profiles.saved_profile.id %}">
+                                <p class="new_font_2">{{ profiles.saved_profile.name }}</p></a>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-12 col-md-4 text-center">
+                                <p>Début : {{ profiles.saved_profile.starting_date }}</p>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-12 col-md-4 text-center">
+                                <p>Durée : {{ profiles.saved_profile.hourly_volume }}</p>
+                            </div>
+                        </div>
+                        <div class="row activity-delete-2">
+                            <div class="col-lg-12 col-md-4 text-center">
+                                <a href="{% url 'profile-delete' profiles.id %}">Supprimer le profil</a>
+                            </div>
+                        </div>
+                    {% endfor %}
+                </div>
+            {% endfor %}
+      {% else %}
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-lg-4">
+                    <h2 class="text-center">Aucun projet enregistré</h2>
+                </div>
+            </div>
+        </div>
+      {% endif %}
+</section>
+
+{% endblock %}

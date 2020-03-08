@@ -1,0 +1,76 @@
+{% extends 'website/layouts/base.html' %}
+{% load static %}
+
+{% block content %}
+
+  <!--==========================
+    Hero Section
+  ============================-->
+
+<header class="main-header">
+  <section id="hero" class="wow fadeIn">
+    <div class="hero-container">
+      <div class="mx-auto hidden-xs">
+        <div class="container apprendre-image">
+        </div>
+      </div>
+      <div class="row welcome">
+        <div class="col-lg-12 text-center">
+                <h1>Bienvenue sur Apprendre13</h1>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-lg-12 text-center">
+          <h2>Un site inspiré du cours "Apprendre à apprendre" d'OpenClassrooms</h2>
+          <a href="{% url 'profile' %}" class="btn-get-started scrollto">Commencer</a>
+        </div>
+      </div>
+      </div>
+    </div>
+  </section><!-- #hero -->
+</header>
+  <!--==========================
+    About Us Section
+  ============================-->
+
+
+<section id="about-us">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-12 text-center">
+        <div class="openclass-picture"><img src="static/website/img/OpenClassrooms.png" alt="About"></div>
+      </div>
+    </div>
+      <div class="row about">
+        <div class="col-lg-12 text-center">
+        <h2>A propos</h2>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-lg-12 text-center">
+          <p><a href="https://openclassrooms.com/fr/courses/4312781-apprenez-a-apprendre">Apprendre à apprendre</a> est un cours d'OpenClassrooms réalisé par Guillaume Parrou.
+              Il s'agit d'un cours permettant une organisation optimale dans l'optique d'acquisition de nouvelles compétences et que j'ai suivi dans le cadre du parcours de
+            développeeur d'applications Python. C'est également dans le cadre du dernier projet que j'ai créé cette application pouvant compléter la lecture du cours.
+              Vous pourrez y créer un profil, des semaines types, inscrire des éléments dans un journal. <br> Ce site ne remplace aucunement le cours dispensé par OpenclassRooms, mais constitue surtout un support alternatif pour réaliser sa propre semaine type</p>
+        </div>
+      </div>
+  </div>
+</section>
+
+  <!--==========================
+    Contact Section
+  ============================-->
+  <section id="contact" class="padd-section wow fadeInUp">
+    <div class="container">
+      <div class="section-title text-center">
+        <h2>Contact</h2>
+      <div class="row">
+        <div class="col-lg-12 mr-auto text-center">
+          <i class="fa fa-envelope fa-3x mb-3 sr-contact"></i>
+                <p><a href="mailto:fouchegaspard@gmail.com">Gaspard Fouché</a></p>
+        </div>
+      </div>
+    </div>
+  </section><!-- #contact -->
+
+{% endblock content %}

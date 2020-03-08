@@ -1,0 +1,253 @@
+{% extends "website/layouts/base.html" %}
+
+{% block content %}
+
+<section id="weekly-sheet-head">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12 text-center">
+                <h1>Semaine type - {{ profile.name }}</h1>
+            </div>
+        </div>
+        <div class="row week-title">
+            <div class="col-lg-12 text-center">
+                <p>Objectif :</p> {{ profile.objective }}
+            </div>
+        </div>
+         <div class="row b-21">
+            <div class="col-lg-6 text-center">
+                Date de début : {{ profile.starting_date }}
+            </div>
+            <div class="col-lg-6 text-center">
+                Date de fin : {{ profile.ending_date }}
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-12 text-center">
+                Durée totale : {{ days }} jours
+            </div>
+        </div>
+        <div class="row activity">
+            <div class="col-lg-12 text-center">
+                 <form action="{% url 'create-weekly-sheet' %}">
+                    <button class="btn" type="submit">Ajouter une activité</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<section id="weekly-sheet-content">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12 text-center">
+                <button id="hide3">Afficher / Cacher détails</button>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-3 text-center col-sm-6 col-xs-12">
+                <div class="yellow">
+                <div class="day-design">Lundi</div>
+                        {% for subset in monday_set %}
+                            {% for days in subset %}
+                                <div class="row time-row">
+                                     <div class="col-lg-6 text-center">
+                                        Début: {{ days.daily_activity.starting_time }}
+                                     </div>
+                                     <div class="col-lg-6 text-center">
+                                        Fin: {{ days.daily_activity.ending_time }}
+                                     </div>
+                                 </div>
+
+                             <p class="new_font">Activité:</p> {{ days.daily_activity.activity  }}
+                        <div class="weekly-hide">
+                             <p>Type:</p> {{ days.daily_activity.type.type_activity }}
+                             <p>Ressource utilisée:</p> {{ days.daily_activity.resource }}
+                         </div>
+                                <div class="row activity-delete">
+                                <a href="{% url 'activity-delete' days.daily_activity.id %}">Supprimer l'activité</a>
+                                </div>
+                                <hr class="my-4">
+                            {% endfor %}
+                        {% endfor %}
+                    </div>
+            </div>
+            <div class="col-lg-3 text-center col-sm-6 col-xs-12">
+                <div class="day-design">Mardi </div>
+                        {% for subset in tuesday_set %}
+                            {% for days in subset %}
+                                                <div class="row time-row">
+                                     <div class="col-lg-6 text-center">
+                                        Début: {{ days.daily_activity.starting_time }}
+                                     </div>
+                                     <div class="col-lg-6 text-center">
+                                        Fin: {{ days.daily_activity.ending_time }}
+                                     </div>
+                                 </div>
+                             <p class="new_font">Activité:</p> {{ days.daily_activity.activity  }}
+                <div class="weekly-hide">
+                             <p>Type:</p> {{ days.daily_activity.type.type_activity }}
+                             <p>Ressource utilisée:</p> {{ days.daily_activity.resource }}
+                </div>
+                                <div class="row activity-delete">
+                                <a href="{% url 'activity-delete' days.daily_activity.id %}">Supprimer l'activité</a>
+                                </div>
+                                <hr class="my-4">
+                        {% endfor %}
+                    {% endfor %}
+            </div>
+            <div class="col-lg-3 text-center col-sm-6 col-xs-12">
+               <div class="yellow">
+                <div class="day-design">Mercredi </div>
+                    {% for subset in wednesday_set %}
+                        {% for days in subset %}
+                                                   <div class="row time-row">
+                                     <div class="col-lg-6 text-center">
+                                        Début: {{ days.daily_activity.starting_time }}
+                                     </div>
+                                     <div class="col-lg-6 text-center">
+                                        Fin: {{ days.daily_activity.ending_time }}
+                                     </div>
+                                 </div>
+                             <p class="new_font">Activité:</p> {{ days.daily_activity.activity  }}
+                   <div class="weekly-hide">
+                             <p>Type:</p> {{ days.daily_activity.type.type_activity }}
+                             <p>Ressource utilisée:</p> {{ days.daily_activity.resource }}
+                   </div>
+                                <div class="row activity-delete">
+                                <a href="{% url 'activity-delete' days.daily_activity.id %}">Supprimer l'activité</a>
+                                </div>
+                            <hr class="my-4">
+                        {% endfor %}
+                    {% endfor %}
+               </div>
+            </div>
+            <div class="col-lg-3 text-center col-sm-6 col-xs-12">
+                <div class="day-design">Jeudi </div>
+                    {% for subset in thursday_set %}
+                        {% for days in subset %}
+                                                <div class="row time-row">
+                                     <div class="col-lg-6 text-center">
+                                        Début: {{ days.daily_activity.starting_time }}
+                                     </div>
+                                     <div class="col-lg-6 text-center">
+                                        Fin: {{ days.daily_activity.ending_time }}
+                                     </div>
+                                 </div>
+                             <p class="new_font">Activité:</p> {{ days.daily_activity.activity  }}
+                <div class="weekly-hide">
+                             <p>Type:</p> {{ days.daily_activity.type.type_activity }}
+                             <p>Ressource utilisée:</p> {{ days.daily_activity.resource }}
+                </div>
+                                <div class="row activity-delete">
+                                <a href="{% url 'activity-delete' days.daily_activity.id %}">Supprimer l'activité</a>
+                                </div>
+                            <hr class="my-4">
+                        {% endfor %}
+                    {% endfor %}
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-3 text-center col-sm-6 col-xs-12">
+                <div class="yellow">
+                <div class="day-design">Vendredi</div>
+                    {% for subset in friday_set %}
+                        {% for days in subset %}
+                            <div class="row time-row">
+                                     <div class="col-lg-6 text-center">
+                                        Début: {{ days.daily_activity.starting_time }}
+                                     </div>
+                                     <div class="col-lg-6 text-center">
+                                        Fin: {{ days.daily_activity.ending_time }}
+                                     </div>
+                                 </div>
+                             <p class="new_font">Activité:</p> {{ days.daily_activity.activity  }}
+                    <div class="weekly-hide">
+                             <p>Type:</p> {{ days.daily_activity.type.type_activity }}
+                             <p>Ressource utilisée:</p> {{ days.daily_activity.resource }}
+                    </div>
+                                <div class="row activity-delete">
+                                <a href="{% url 'activity-delete' days.daily_activity.id %}">Supprimer l'activité</a>
+                                </div>
+                            <hr class="my-4">
+                        {% endfor %}
+                    {% endfor %}
+                </div>
+            </div>
+            <div class="col-lg-3 text-center col-sm-6 col-xs-12">
+                <div class="day-design">Samedi </div>
+                    {% for subset in saturday_set %}
+                        {% for days in subset %}
+                                                <div class="row time-row">
+                                     <div class="col-lg-6 text-center">
+                                        Début: {{ days.daily_activity.starting_time }}
+                                     </div>
+                                     <div class="col-lg-6 text-center">
+                                        Fin: {{ days.daily_activity.ending_time }}
+                                     </div>
+                                 </div>
+                             <p class="new_font">Activité:</p> {{ days.daily_activity.activity  }}
+                <div class="weekly-hide">
+                             <p>Type:</p> {{ days.daily_activity.type.type_activity }}
+                             <p>Ressource utilisée:</p> {{ days.daily_activity.resource }}
+                </div>
+                                <div class="row activity-delete">
+                                <a href="{% url 'activity-delete' days.daily_activity.id %}">Supprimer l'activité</a>
+                                </div>
+                            <hr class="my-4">
+                        {% endfor %}
+                    {% endfor %}
+            </div>
+            <div class="col-lg-3 text-center col-sm-6 col-xs-12">
+                <div class="yellow">
+                <div class="day-design">Dimanche </div>
+                    {% for subset in sunday_set %}
+                        {% for days in subset %}
+                                                    <div class="row time-row">
+                                     <div class="col-lg-6 text-center">
+                                        Début: {{ days.daily_activity.starting_time }}
+                                     </div>
+                                     <div class="col-lg-6 text-center">
+                                        Fin: {{ days.daily_activity.ending_time }}
+                                     </div>
+                                 </div>
+                             <p class="new_font">Activité:</p> {{ days.daily_activity.activity  }}
+                    <div class="weekly-hide">
+                             <p>Type:</p> {{ days.daily_activity.type.type_activity }}
+                             <p>Ressource utilisée:</p> {{ days.daily_activity.resource }}
+                    </div>
+                                <div class="row activity-delete">
+                                <a href="{% url 'activity-delete' days.daily_activity.id %}">Supprimer l'activité</a>
+                                </div>
+                            <hr class="my-4">
+                        {% endfor %}
+                    {% endfor %}
+                </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<section id="weekly-bottom">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-6 text-center">
+                <form action="{% url 'posts-list' %}">
+                    <button class="btn" type="submit">Lien vers le journal</button>
+                </form>
+            </div>
+            <div class="col-lg-6 text-center">
+            <form action="{% url 'profile-sheet' id=profile.id %}">
+                <button class="btn" type="submit">Retour vers le profil</button>
+            </form>
+        </div>
+        </div>
+    </div>
+</section>
+
+
+
+{% endblock %}

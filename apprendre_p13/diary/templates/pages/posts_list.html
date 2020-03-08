@@ -1,0 +1,94 @@
+{% extends "website/layouts/base.html" %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+
+<section id="diary-title">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12 text-center">
+                <h1>Journal de {{ user }}</h1>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section id="new-message">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12 text-center">
+                <button class="btn" id="toggle-message">Nouvelle entrée</button>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section id="create-post">
+   <div class="container my-auto">
+       <div class="row">
+           <div class="col-lg-8 mx-auto">
+           <div class="content-section">
+                <form method="POST" id="post-form">
+                    {% csrf_token %}
+                    <fieldset class="form-group" id="post-text">
+                        <legend class="border-bottom mb-4">Rédiger une nouvelle entrée</legend>
+                        {{ form|crispy }}
+                    </fieldset>
+                    <div class="form-group">
+                        <button class="btn" type="submit">Créer entrée</button>
+                    </div>
+                </form>
+            </div>
+           </div>
+       </div>
+   </div>
+</section>
+
+<div id="results"></div>
+
+{% for post in posts %}
+<section id="post-section">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-4">
+                <div class="bold">
+                    {{ post.Sujet }}
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-4">
+                <div class="italic">
+                    <p>{{ post.published_date }}</p>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-8">
+                <p>{{ post.Texte|linebreaksbr }}</p>
+            </div>
+        </div>
+        <div class="row t-15">
+            <div class="col-lg-4">
+                <a href="{% url 'post-delete' post.id %}">Supprimer</a>
+            </div>
+        </div>
+    </div>
+</section>
+
+{% endfor %}
+
+
+<div class="container bottom-diary">
+    <div class="row diary-nav">
+        <div class="col-lg-12 text-center">
+            <form action="{% url 'profile-sheet' id=profile.id %}">
+                <button class="btn" type="submit">Retour vers le profil</button>
+            </form>
+        </div>
+    </div>
+</div>
+
+
+
+{% endblock %}

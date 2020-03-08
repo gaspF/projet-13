@@ -1,0 +1,26 @@
+{% extends "website/layouts/base.html" %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+
+<section id="createprofile">
+   <div class="container my-auto">
+       <div class="row">
+           <div class="col-lg-8 mx-auto">
+           <div class="content-section">
+                <form method="POST">
+                    {% csrf_token %}
+                    <fieldset class="form-group">
+                        <legend class="border-bottom mb-4">Créer profil</legend>
+                        {{ form|crispy }}
+                    </fieldset>
+                    <div class="form-group">
+                        <button class="btn" type="submit">Créer profil</button>
+                    </div>
+                </form>
+            </div>
+           </div>
+       </div>
+   </div>
+</section>
+{% endblock content %}

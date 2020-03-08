@@ -1,0 +1,26 @@
+{% extends "website/layouts/base.html" %}
+{% load static %}
+
+{% block content %}
+<section id="delete">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12 text-center">
+                <div class="content-section">
+                    <form method="POST">
+                    {% csrf_token %}
+                    <fieldset class="form-group">
+                        <legend class="border-bottom mb-4">Suppression de projet</legend>
+                        <p>Voulez-vous supprimer ce projet ?</p>
+                    </fieldset>
+                    <div class="form-group">
+                        <button class="btn" type="submit">Oui, supprimer</button>
+                        <a class="btn" href="{% url 'profile-list' %}">Annuler</a>
+                    </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock content %}

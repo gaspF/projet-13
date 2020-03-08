@@ -1,0 +1,67 @@
+{% extends "website/layouts/base.html" %}
+{% load crispy_forms_tags %}
+{% block content %}
+
+
+<section id="profile">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12 text-center">
+                <h1>Profil de {{ user.username }}</h1>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<section id="profile-info">
+    <div class="container">
+        <div class="row b-20">
+            <div class="col-lg-12 text-center">
+                <h2>Informations personnelles</h2>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-12 text-center">
+                <p>Nom d'utilisateur : {{ user.username }}</p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-12 text-center">
+                <p>Adresse mail : {{ user.email }}</p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-12 text-center">
+                <p>Nom de famille : {{ user.last_name }}</p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-12 text-center">
+                <p>Prénom : {{ user.first_name }}</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<hr class="my-4">
+
+<section id="profile-link">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-6 text-center">
+                <form action="{% url 'create-profile' %}">
+                    <button class="btn" type="submit">Nouveau projet d'apprentissage</button>
+                </form>
+            </div>
+            <div class="col-lg-6 text-center">
+                <form action="{% url 'profile-list' %}">
+                    <button class="btn" type="submit">Choisir projet existant</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>
+
+{% endblock content %}

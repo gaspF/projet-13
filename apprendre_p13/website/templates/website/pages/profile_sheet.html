@@ -1,0 +1,196 @@
+{% extends "website/layouts/base.html" %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+
+
+<section id="profile-sheet-head">
+    <div class="container">
+        <div class="row" id="rowprofile">
+            <div class="col-lg-12">
+                <h1>{{ profile.name }}</h1>
+            </div>
+        </div>
+        <div class="row b-22">
+            <div class="col-lg-12 text-center">
+                <div class="bold">
+                     Objectif :
+                </div>
+                {{ profile.objective }}
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-12 text-center">
+                Je veux y consacrer {{ profile.hourly_volume }} heures par semaine
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-12 text-center">
+                Durée totale : {{ days }} jours
+            </div>
+        </div>
+        <div class="row" id="profile-duration">
+            <div class="col-lg-6">
+                Date de début : {{ profile.starting_date }}
+            </div>
+            <div class="col-lg-6">
+                Date de fin : {{ profile.ending_date }}
+            </div>
+        </div>
+    </div>
+</section>
+
+<hr class="my-4">
+
+
+
+<section id="profile-sheet-objectives">
+    <div class="container">
+        <div class="row" id="sheet-strat">
+            <div class="col-lg-12 text-center d-none d-lg-block"><h2>Stratégie</h2></div>
+        </div>
+        <div class="row">
+            <div class="col-lg-12 text-center">
+            <button id="hide">Afficher / Cacher</button>
+            </div>
+        </div>
+        <section id="strat-part">
+        <div class="row">
+            <div class="col-lg-4 text-center d-none d-lg-block">
+            </div>
+            <div class="col-lg-4 text-center col-sm-2 col-xs-1">
+                <div class="square-font">
+                    <div class="good">Forces:</div>
+                    <p>{{ profile.forces }}</p>
+                </div>
+            </div>
+            <div class="col-lg-4 text-center col-sm-2 col-xs-1">
+                <div class="square-font">
+                    <div class="bad">Faiblesses:</div>
+                    <p> {{ profile.weaknesses }}</p>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-4 text-center d-none d-lg-block">
+                <div class="square-font">
+                    <div class="good">Opportunités:</div>
+                    <p>{{ profile.opportunities }}</p>
+                </div>
+            </div>
+            <div class="col-lg-4 text-center col-sm-2 col-xs-1">
+                <div class="square-font-grey">
+                    <div class="medium-good">Offensive :</div>
+                    <p>{{ profile.offensive }}</p>
+                </div>
+            </div>
+            <div class="col-lg-4 text-center col-sm-2 col-xs-1">
+                <div class="square-font-grey">
+                    <div class="medium">Préventive:</div>
+                    <p>{{ profile.preventive }}</p>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+                <div class="col-lg-4 text-center d-none d-lg-block">
+                    <div class="square-font">
+                        <div class="bad">Menaces:</div>
+                        <p>{{ profile.menaces }}</p>
+                    </div>
+                </div>
+            <div class="col-lg-4 text-center col-sm-2 col-xs-1">
+                <div class="square-font-grey">
+                    <div class="medium">Défense:</div>
+                    <p>{{ profile.defensive }}</p>
+                </div>
+            </div>
+            <div class="col-lg-4 text-center col-sm-2 col-xs-1">
+                <div class="square-font-grey">
+                    <div class="medium-bad">Urgence:</div>
+                    <p>{{ profile.emergency }}</p>
+                </div>
+            </div>
+        </div>
+        </section>
+    </div>
+</section>
+
+        <hr class="my-4">
+
+<section id="profile-sheet-activities">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12 text-center d-none d-lg-block" id="sheet-activities"><h3>Liste d'activités</h3></div>
+        </div>
+        <div class="row">
+            <div class="col-lg-12 text-center">
+                <button id="hide2">Afficher / Cacher</button>
+            </div>
+        </div>
+         <section id="toggle-activities">
+        <div class="font-yellow">
+            <div class="row">
+                <div class="col-lg-6 text-center">
+                    Activité 1:
+                    <p>{{ profile.step_1 }}</p>
+                    <p>{{ profile.step_1_duration }} heures par semaine</p>
+                </div>
+                <div class="col-lg-6 text-center">
+                    Activité 2:
+                    <p>{{ profile.step_2 }}</p>
+                    <p>{{ profile.step_2_duration }} heures par semaine</p>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-6 text-center">
+                Activité 3:
+                <p>{{ profile.step_3 }}</p>
+                <p>{{ profile.step_3_duration }} heures par semaine</p>
+            </div>
+            <div class="col-lg-6 text-center">
+                Activité 4:
+                <p>{{ profile.step_4 }}</p>
+                <p>{{ profile.step_4_duration }} heures par semaine</p>
+            </div>
+        </div>
+        <div class="font-yellow">
+        <div class="row">
+            <div class="col-lg-6 text-center">
+                Activité 5:
+                <p>{{ profile.step_5 }}</p>
+                <p>{{ profile.step_5_duration }} heures par semaine</p>
+            </div>
+            <div class="col-lg-6 text-center">
+                Activité 6:
+                <p>{{ profile.step_6 }}</p>
+                <p>{{ profile.step_6_duration }} heures par semaine</p>
+            </div>
+        </div>
+        </div>
+         </section>
+    </div>
+</section>
+
+<section id="sheet-bottom">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-6 text-center">
+                <form action="{% url 'posts-list' %}">
+                    <button class="btn" type="submit">Lien vers le journal</button>
+                </form>
+            </div>
+            <div class="col-lg-6 text-center">
+                <form action="{% url 'existing-sheet' %}">
+                    <button class="btn" type="submit">Lien vers la semaine type</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+
+
+
+{% endblock content%}
