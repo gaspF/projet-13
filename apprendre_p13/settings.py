@@ -147,7 +147,7 @@ USE_TZ = True
 STATIC_URL = '/static/'
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
 
-if os.environ.ge('ENV') == 'PRODUCTION':
+if os.environ.get('ENV') == 'PRODUCTION':
 
     PROJECT_ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
     STATIC_ROOT = os.path.join(PROJECT_ROOT, 'static')
