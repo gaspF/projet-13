@@ -26,6 +26,14 @@ SECRET_KEY = 'q3^$ow4o1(#(1vl&zr*^*$z5xcj(33+0z!-rrag2@ch(d%=nlm'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
+if os.environ.get('ENV') == 'PRODUCTION':
+    DEBUG = False
+
+else:
+    DEBUG = True
+
+
+
 ALLOWED_HOSTS = ["127.0.0.1", 'apprendre13.herokuapp.com']
 
 
@@ -63,7 +71,7 @@ ROOT_URLCONF = 'apprendre_p13.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [os.path.join(BASE_DIR, 'templates'),],
+        'DIRS': [],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -82,34 +90,18 @@ WSGI_APPLICATION = 'apprendre_p13.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.0/ref/settings/#databases
 
-if os.environ.get('ENV') == 'PRODUCTION':
-    DEBUG = False
-    DATABASES = {
-        'default': {
-            'ENGINE': 'django.db.backends.postgresql_psycopg2',
-            'NAME': 'apprendre13',
-            'USER': os.environ.get('DB_USER'),
-            'PASSWORD': os.environ.get('DB_PASS'),
-            'HOST': 'localhost',
-            'PORT': '5432',
-        }
-    }
-    db_from_env = dj_database_url.config(conn_max_age=500)
-    DATABASES['default'].update(db_from_env)
-    STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 
-else:
-    DEBUG = True
-    DATABASES = {
-        'default': {
-            'ENGINE': 'django.db.backends.postgresql_psycopg2',
-            'NAME': 'apprendre13',
-            'HOST': 'localhost',
-            'PORT': '5432',
-            'USER': 'gaspf',
-            'PASSWORD': 'motdepasse',
-        }
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': 'apprendre13',
+        'USER': 'gaspf',
+        'PASSWORD': 'motdepasse',
+        'HOST': '',
+        'PORT': '5432',
     }
+}
+
 
 
 # Password validation
@@ -154,3 +146,14 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
+
+if os.environ.ge('ENV') == 'PRODUCTION':
+
+    PROJECT_ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+    STATIC_ROOT = os.path.join(PROJECT_ROOT, 'static')
+    STATICFILES_DIRS = (
+        os.path.join(PROJECT_ROOT, 'static'),
+    )
+    db_from_env = dj_database_url.config(conn_max_age=500)
+    DATABASES['default'].update(db_from_env)
+
