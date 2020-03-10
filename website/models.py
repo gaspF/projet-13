@@ -30,6 +30,9 @@ class Profile(models.Model):
     step_6 = models.CharField(verbose_name="Activité 6", max_length=2000, blank=True)
     step_6_duration = models.SmallIntegerField(verbose_name="Volume horaire par semaine", default=1)
 
+    def __str__(self):
+        return self.name
+
 
 class SavedProfile(models.Model):
     class Meta:
@@ -38,3 +41,6 @@ class SavedProfile(models.Model):
         ]
     saved_by = models.ForeignKey(User, verbose_name='Sauvegardé par', on_delete=models.CASCADE,)
     saved_profile = models.ForeignKey(Profile, verbose_name="Profil sauvegardé", on_delete=models.CASCADE)
+
+    def __str__(self):
+        return self.name
