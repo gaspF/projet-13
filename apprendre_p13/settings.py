@@ -107,7 +107,7 @@ LANGUAGE_CODE = 'fr-FR'
 
 TIME_ZONE = 'Europe/Paris'
 
-LOGIN_REDIRECT_URL = 'pur-beurre-index'
+LOGIN_REDIRECT_URL = 'apprendre13-index'
 
 LOGIN_URL = 'login'
 
