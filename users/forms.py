@@ -4,6 +4,7 @@ from django.contrib.auth.forms import UserCreationForm
 
 
 class UserRegisterForm(UserCreationForm):
+    """A class that allow user to complete a form in order to register himself"""
     email = forms.EmailField()
 
     class Meta:

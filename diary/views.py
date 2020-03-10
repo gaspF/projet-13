@@ -14,6 +14,8 @@ from django.core.serializers.json import DjangoJSONEncoder
 
 
 class PostsList(View):
+    """Diary's posts view. One method get for displaying, another method Post to handle user requests, like posting
+     something new."""
     template_name = 'pages/posts_list.html'
 
     def get(self, request):

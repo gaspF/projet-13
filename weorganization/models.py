@@ -8,6 +8,7 @@ from django.contrib.auth.models import User
 
 
 class ActivityTypeList(enum.Enum):
+    """Enumerate data model of activlty types"""
     PRATIQUED = 1
     SEANCEG = 2
     ACTIVITECOMP = 3
@@ -28,6 +29,7 @@ class ActivityType(models.Model):
 
 
 class DayList(enum.Enum):
+    """Enumerate data model of days"""
     LUNDI = 1
     MARDI = 2
     MERCREDI = 3
@@ -48,6 +50,7 @@ class DayList(enum.Enum):
 
 
 class Activity(models.Model):
+    """Activity main class, which contains activity name, resource type, activity type, starting and ending time"""
     activity = models.CharField(verbose_name='Activité', max_length=200)
     resource = models.CharField(verbose_name='Ressource', max_length=200)
     type = models.ForeignKey(ActivityType, verbose_name='type', on_delete=models.CASCADE)
@@ -56,6 +59,7 @@ class Activity(models.Model):
 
 
 class Day(models.Model):
+    """Day class, which is linked to an activity, in order to display what activities is scheluled on which day."""
     day_name = enum.EnumField(DayList)
     daily_activity = models.ForeignKey(Activity, verbose_name='Activité liée', default="99999", on_delete=models.CASCADE)
     profile = models.ForeignKey(Profile, verbose_name='Profil lié', on_delete=models.CASCADE)

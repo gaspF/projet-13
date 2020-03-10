@@ -5,6 +5,7 @@ from django.contrib.auth.decorators import login_required
 
 
 def register(request):
+    """Register view, confirmation message in case of registration success"""
     if request.method == 'POST':
         form = UserRegisterForm(request.POST)
         if form.is_valid():

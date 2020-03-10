@@ -11,6 +11,7 @@ from django.db.models import Sum
 
 
 class CreateWeekly(FormView):
+    """Create a new activity on the weekly sheet"""
     template_name = 'pages/create_weekly_sheet.html'
 
     @method_decorator(login_required)
@@ -48,6 +49,7 @@ class CreateWeekly(FormView):
 
 
 class ExistingSheet(View):
+    """Displaying an existing sheet with all of the activities saved by the user"""
     template_name = 'pages/existing_sheet.html'
 
     def get(self, request):

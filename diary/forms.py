@@ -5,6 +5,7 @@ from crispy_forms.helper import FormHelper
 
 
 class PostForm(forms.ModelForm):
+    """Post form"""
     class Meta:
         model = Post
         fields = ('Sujet', 'Texte',)

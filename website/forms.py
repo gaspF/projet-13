@@ -4,6 +4,7 @@ from django.forms import formset_factory
 
 
 class ProfileForm(forms.ModelForm):
+    """A form that allow user to save projet into database when completing the form"""
     def __init__(self, *args, **kwargs):
         super(ProfileForm, self).__init__(*args, **kwargs)
         self.fields['name'].initial = "Ex: Amélioration du niveau de français"
@@ -28,8 +29,6 @@ class ProfileForm(forms.ModelForm):
         self.fields['step_5'].initial = "Ex: Lire les oeuvres de membres de l'Académie Française."
         self.fields['step_6'].initial = "Ex: Ecrire au moins 500 mots/jour."
         self.fields['step_1_duration'].initial = 44
-
-
 
     class Meta:
         model = Profile

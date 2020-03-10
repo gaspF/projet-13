@@ -11,12 +11,14 @@ from django.db import IntegrityError
 
 
 class Index(View):
+    """Home page"""
     template_name = 'website/pages/index.html'
     def get(self, request):
         return render(request, self.template_name)
 
 
 class CreateProfile(View):
+    """Projet creation page"""
     template_name = 'website/pages/createprofile.html'
 
     @method_decorator(login_required)
@@ -40,6 +42,7 @@ class CreateProfile(View):
 
 
 class ProfileList(View):
+    """Project list page. All the project are filtered by username and project ID"""
     model = SavedProfile
     template_name = 'website/pages/profile_list.html'
     paginate_by = 6
@@ -66,6 +69,7 @@ class ProfileList(View):
 
 
 class ProfileSheet(View):
+    """Project sheet page. Storing the profile ID in a variable session."""
     template_name = 'website/pages/profile_sheet.html'
 
     def get(self, request, id):

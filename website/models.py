@@ -4,6 +4,7 @@ import datetime
 
 
 class Profile(models.Model):
+    "Data model of a user project"
     name = models.CharField(verbose_name="Nom du projet", max_length=500)
     objective = models.TextField(verbose_name="Objectif stratégique", max_length=4000)
     starting_date = models.DateField(verbose_name="Date de commencement", default=datetime.date.today)
@@ -35,6 +36,7 @@ class Profile(models.Model):
 
 
 class SavedProfile(models.Model):
+    """One to many association table between user and project"""
     class Meta:
         constraints = [
             models.UniqueConstraint(fields=['saved_by', 'saved_profile'], name='saved_association'),
