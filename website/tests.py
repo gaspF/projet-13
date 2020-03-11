@@ -4,7 +4,7 @@ from .models import *
 from .views import *
 from django.urls import reverse
 from users.views import profile
-from diary.views import PostsList
+from django.test import Client
 
 
 class ProfileModelTests(TestCase):
@@ -25,6 +25,7 @@ class ViewsTests(TestCase):
         Profile.objects.create(name='testname', objective='testobjective', hourly_volume="44", forces="testforce", weaknesses="testweak", opportunities='testopport', menaces="testmenaces", offensive="testoffense", defensive="testdefense", preventive="testprevent", emergency="testemergency", step_1="test1", step_1_duration="20", step_2="test2", step_2_duration="21", step_3="test3", step_3_duration="2")
         self.user = User.objects.create(username="Jean", email="jean@yahoo.com", password="machin")
         self.factory = RequestFactory()
+        self.client = Client()
 
     def test_homepage(self):
         response = self.client.get(reverse('apprendre13-index'))
@@ -73,6 +74,10 @@ class AnonUser(TestCase):
     def test_anon_user_register(self):
         response = self.client.post('/register/')
         self.assertEqual(response.status_code, 200)
+
+    def test_anon_diary(self):
+        response = self.client.get(reverse('posts-list'))
+        self.assertEqual(response.status_code, 302)
 
 
 class LogInTest(TestCase):
