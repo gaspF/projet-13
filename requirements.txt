@@ -5,7 +5,7 @@ black==19.10b0
 Click==7.0
 distlib==0.3.0
 dj-database-url==0.5.0
-Django==3.0.4
+Django==3.1.6
 django-crispy==1.8.1
 django-crispy-forms==1.9.0
 django-enumfield==2.0.1
